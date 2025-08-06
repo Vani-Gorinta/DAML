@@ -1,0 +1,29 @@
+import pandas as pd
+iris = pd.read_csv(r"C:\Users\vanig\Downloads\IRIS.csv")
+
+import numpy as np
+
+x = iris[['sepal_length', 'sepal_width']]
+y = iris.petal_length
+
+from sklearn.model_selection import train_test_split
+x_train, x_test, y_train, y_test = train_test_split(x,y,test_size=0.2)
+
+from sklearn.linear_model import LinearRegression
+LR = LinearRegression()
+
+training = LR.fit(x_train, y_train)
+y_pred = LR.predict(x_test)
+print(y_pred,"\n")
+
+
+#pip install numpy
+import numpy as np
+from sklearn import metrics
+
+MAE = metrics.mean_absolute_error(y_test, y_pred)
+print("Mean Absolute Error", MAE)
+MSE = metrics.mean_squared_error(y_test, y_pred)
+print("Mean Squared Error", MSE)
+RMSE = metrics.root_mean_squared_error(y_test, y_pred)
+print("Root Mean Squared Error", RMSE)
